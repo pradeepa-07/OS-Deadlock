@@ -1,0 +1,580 @@
+:root {
+  --ink: #111a33;
+  --red: #e2231a;
+  --blue: #00a2ff;
+  --green: #2fbf4f;
+  --yellow: #ffd21f;
+  --purple: #8b5cf6;
+  --orange: #ff8a00;
+  --card: #fff;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+body {
+  margin: 0;
+  font:
+    600 16px/1.5 Nunito,
+    system-ui,
+    sans-serif;
+  color: var(--ink);
+  background: #7fd0ff;
+  background-image: radial-gradient(circle, #ffffff55 3px, transparent 4px);
+  background-size: 34px 34px;
+  animation: slide 14s linear infinite;
+}
+@keyframes slide {
+  to {
+    background-position: 34px 34px;
+  }
+}
+h1,
+button,
+.logo,
+svg text {
+  font-family: "Lilita One", Impact, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+header {
+  background: var(--ink);
+  padding: 10px 14px;
+  border-bottom: 6px solid var(--yellow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.logo {
+  color: var(--yellow);
+  font-size: 24px;
+}
+.logo b {
+  color: var(--red);
+}
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px 14px 60px;
+  position: relative;
+  z-index: 1;
+}
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.hero h1 {
+  font-size: clamp(28px, 5vw, 46px);
+  margin: 0;
+  color: #fff;
+  text-shadow:
+    3px 3px 0 var(--ink),
+    -1px -1px 0 var(--ink),
+    1px -1px 0 var(--ink),
+    -1px 1px 0 var(--ink);
+}
+.stage-tag {
+  background: var(--yellow);
+  border: 4px solid var(--ink);
+  padding: 2px 12px;
+  font-family: "Lilita One";
+  transform: rotate(-3deg);
+  box-shadow: 4px 4px 0 var(--ink);
+  animation: wob 2s ease-in-out infinite;
+}
+@keyframes wob {
+  50% {
+    transform: rotate(3deg) scale(1.06);
+  }
+}
+.card {
+  background: var(--card);
+  border: 4px solid var(--ink);
+  border-radius: 10px;
+  box-shadow: 7px 7px 0 var(--ink);
+  padding: 16px;
+  border-top: 12px solid var(--blue);
+}
+button {
+  background: var(--c, var(--green));
+  color: #111;
+  border: 3px solid var(--ink);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+button:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+.row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.stage {
+  position: relative;
+  background: #cfeeff;
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: background 0.5s;
+}
+.stage.bad {
+  background: #ffd3cd;
+}
+.stage.dead {
+  animation: shake 0.35s 3;
+}
+@keyframes shake {
+  25% {
+    transform: translateX(-7px);
+  }
+  75% {
+    transform: translateX(7px);
+  }
+}
+svg.rag {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none;
+  user-select: none;
+}
+.boom {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--red);
+  color: #fff;
+  font-family: "Lilita One";
+  font-size: 20px;
+  padding: 2px 12px;
+  border: 3px solid var(--ink);
+  border-radius: 6px;
+  animation: sh 0.4s infinite;
+}
+.boom.ok {
+  background: var(--green);
+  animation: none;
+}
+@keyframes sh {
+  50% {
+    transform: rotate(3deg) scale(1.06);
+  }
+}
+.hint {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 6px;
+  padding: 0 8px;
+  font: 800 12px Nunito;
+  opacity: 0.85;
+}
+.nd {
+  cursor: grab;
+}
+.nd2 {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  transition: transform 0.15s;
+}
+.nd2.pop {
+  animation: pop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) backwards;
+}
+@keyframes pop {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+.nd2.bye {
+  animation: bye 0.45s forwards;
+}
+@keyframes bye {
+  to {
+    transform: scale(0) rotate(200deg);
+    opacity: 0;
+  }
+}
+.tgt .nd2 {
+  transform: scale(1.22);
+  filter: drop-shadow(0 0 8px #ffd21f);
+}
+.bob {
+  animation: bob 1.6s ease-in-out infinite;
+}
+@keyframes bob {
+  50% {
+    transform: translateY(-4px);
+  }
+}
+.wg {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wig 3s ease-in-out infinite;
+}
+@keyframes wig {
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+}
+.nope .wg {
+  animation: jit 0.1s 5;
+}
+.shk {
+  animation: jit 0.16s infinite;
+}
+@keyframes jit {
+  25% {
+    transform: translate(-3px, 1px);
+  }
+  75% {
+    transform: translate(3px, -1px);
+  }
+}
+.party .bob {
+  animation: hop 0.3s ease-in-out infinite alternate;
+}
+@keyframes hop {
+  to {
+    transform: translateY(-14px);
+  }
+}
+.eh {
+  animation: pulse 0.5s ease-in-out infinite alternate;
+}
+@keyframes pulse {
+  to {
+    stroke-width: 8;
+    opacity: 0.6;
+  }
+}
+.hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 24;
+  cursor: pointer;
+  pointer-events: stroke;
+}
+.ln {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+.ln.q {
+  stroke: #ff8a00;
+  stroke-dasharray: 9 6;
+  animation: flow 0.7s linear infinite;
+}
+@keyframes flow {
+  to {
+    stroke-dashoffset: -15;
+  }
+}
+.ln.a {
+  stroke: #1baa3b;
+}
+.ln.a.n {
+  stroke-dasharray: 1;
+  animation: draw 0.8s ease-out backwards;
+}
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+.ln.h {
+  stroke: #e2231a;
+  stroke-width: 6;
+  animation: pulse 0.5s ease-in-out infinite alternate;
+}
+.bdg {
+  cursor: pointer;
+}
+.bdg:hover circle {
+  r: 12;
+}
+.fxt {
+  font-size: 26px;
+  text-anchor: middle;
+  pointer-events: none;
+  animation: rise 1s forwards;
+}
+@keyframes rise {
+  to {
+    transform: translateY(-36px);
+    opacity: 0;
+  }
+}
+svg text {
+  font-size: 13px;
+  fill: var(--ink);
+  pointer-events: none;
+}
+.cube {
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  border: 4px solid var(--ink);
+  border-radius: 6px;
+  opacity: 0.9;
+  animation: fl 7s ease-in-out infinite alternate;
+}
+@keyframes fl {
+  from {
+    transform: translateY(0) rotate(0);
+  }
+  to {
+    transform: translateY(-46px) rotate(40deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+[hidden] {
+  display: none !important;
+}
+header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+nav a {
+  font-family: "Lilita One", Impact, sans-serif;
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 14px;
+  border: 3px solid #fff3;
+  border-radius: 6px;
+  transition: transform 0.15s;
+}
+nav a:hover {
+  transform: translateY(-3px) rotate(-2deg);
+}
+nav a.on {
+  background: var(--c);
+  border-color: #fff;
+  color: #111;
+}
+section {
+  animation: pg 0.45s ease-out;
+}
+@keyframes pg {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+.lead {
+  background: #fff;
+  border: 4px solid var(--ink);
+  border-radius: 8px;
+  padding: 6px 12px;
+  display: inline-block;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 22px;
+}
+h3 {
+  font-family: "Lilita One", Impact, sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  margin: 0 0 8px;
+}
+.cap2 {
+  min-height: 52px;
+  margin-top: 8px;
+  font-weight: 800;
+}
+.why,
+.fix {
+  border: 3px dashed;
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin-top: 8px;
+}
+.why {
+  background: #ffe8e6;
+  border-color: var(--red);
+}
+.fix {
+  background: #e6ffe9;
+  border-color: var(--green);
+}
+.tg {
+  display: inline-block;
+  padding: 1px 10px;
+  border: 3px solid var(--ink);
+  border-radius: 6px;
+  background: var(--yellow);
+  font-family: "Lilita One";
+}
+table {
+  border-collapse: separate;
+  border-spacing: 4px;
+}
+th {
+  font-family: "Lilita One";
+  font-weight: 400;
+  font-size: 14px;
+}
+td input {
+  width: 54px;
+  padding: 5px;
+  border: 3px solid var(--ink);
+  border-radius: 6px;
+  font: 800 16px Nunito;
+  text-align: center;
+}
+.pad {
+  overflow-x: auto;
+}
+.pl {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+.pc {
+  width: 112px;
+  text-align: center;
+  border: 4px solid var(--ink);
+  border-radius: 8px;
+  background: #fff;
+  padding: 4px;
+  transition: 0.3s;
+  font-size: 13px;
+}
+.pc.chk {
+  background: var(--yellow);
+  transform: translateY(-6px);
+}
+.pc.no {
+  background: #ffc9c4;
+}
+.pc.done {
+  background: #b9f6c5;
+}
+.pc.chk svg,
+.party2 .pc svg {
+  animation: hop2 0.35s ease-in-out infinite alternate;
+}
+.pc.done svg {
+  animation: hop2 0.5s 2 alternate;
+}
+@keyframes hop2 {
+  to {
+    transform: translateY(-10px);
+  }
+}
+.log {
+  background: var(--ink);
+  color: #9dff9d;
+  font:
+    700 14px/1.5 ui-monospace,
+    Menlo,
+    monospace;
+  border-radius: 8px;
+  padding: 10px;
+  min-height: 150px;
+  max-height: 260px;
+  overflow: auto;
+}
+.seq {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-height: 44px;
+}
+.seq span {
+  background: var(--green);
+  border: 3px solid var(--ink);
+  border-radius: 6px;
+  padding: 2px 12px;
+  font-family: "Lilita One";
+  animation: pop 0.4s backwards;
+}
+.seq span.x {
+  background: var(--red);
+  color: #fff;
+}
+.ln.q {
+  stroke-dasharray: 9 6;
+}
+select {
+  font: 800 15px Nunito;
+  padding: 6px 10px;
+  border: 3px solid var(--ink);
+  border-radius: 6px;
+  background: #fff;
+}
+.row label {
+  font-weight: 800;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  margin-top: 8px;
+}
+.legend i {
+  display: inline-block;
+  width: 30px;
+  border-top: 4px solid;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+nav a {
+  padding: 5px 10px;
+  font-size: 15px;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+nav a {
+  cursor: pointer;
+}

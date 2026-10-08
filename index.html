@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Deadlock Obby — Playground</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">DEADLOCK<b>·</b>OBBY</div>
+      <nav id="nav"></nav>
+    </header>
+    <main>
+      <section id="t-dead">
+        <div class="hero"><h1>Deadlock Playground</h1></div>
+        <div class="card">
+          <div class="row">
+            <button id="aP" style="--c: var(--blue)">+ 🧍 Player</button
+            ><button id="aR" style="--c: var(--yellow)">+ 📦 Item</button>
+            <button id="sD" style="--c: #ff7a70">💀 Deadlock</button
+            ><button id="sS">✅ Safe</button>
+            <button id="fx" style="--c: var(--orange)">🛠️ Fix</button
+            ><button id="cl" style="--c: #fff">🧹 Clear</button>
+          </div>
+          <div class="stage" id="stage">
+            <svg id="g" class="rag" viewBox="0 0 900 460">
+              <defs>
+                <marker
+                  id="mq"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="5"
+                  markerHeight="5"
+                  orient="auto"
+                >
+                  <path d="M0 0L10 5L0 10z" fill="#FF8A00" />
+                </marker>
+                <marker
+                  id="ma"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="5"
+                  markerHeight="5"
+                  orient="auto"
+                >
+                  <path d="M0 0L10 5L0 10z" fill="#1BAA3B" />
+                </marker>
+                <marker
+                  id="mh"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="5"
+                  markerHeight="5"
+                  orient="auto"
+                >
+                  <path d="M0 0L10 5L0 10z" fill="#E2231A" />
+                </marker>
+              </defs>
+              <g id="eL"></g>
+              <g id="nL"></g>
+              <g id="fL"></g>
+              <path
+                id="rb"
+                fill="none"
+                stroke="#111"
+                stroke-width="5"
+                stroke-dasharray="2 10"
+                stroke-linecap="round"
+              />
+            </svg>
+            <div id="bd"></div>
+            <div class="hint">
+              <b style="color: #1baa3b">Green line</b>: drag 📦→🧍 = the player HOLDS the item ·
+              <b style="color: #ff8a00">Orange dashed line</b>: drag 🧍→📦 = the player WAITS for
+              the item (drag from a player onto an item it holds to give it back) · click a line to
+              remove it
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="t-avoid" hidden>
+        <div class="hero"><h1>Deadlock Avoidance: Banker's Algorithm</h1></div>
+        <div class="card" style="border-top-color: var(--purple)">
+          <p style="margin-top: 0">
+            The OS grants a request only if the system stays in a <b>safe state</b>: some order
+            exists in which every player can finish. Type your own numbers (A 💰 Robux, B 🖥️ Server
+            Slots, C 🗡️ Tools, D 🐶 Pets, E 🎟️ Passes). <b>Need = Max − Allocation.</b> It runs once
+            when you open the tab; edit anything and press Run again.
+          </p>
+          <div class="row">
+            <label
+              >🧍 Players (processes)
+              <select id="bn">
+                <option>2</option>
+                <option>3</option>
+                <option selected>4</option>
+                <option>5</option>
+                <option>6</option>
+              </select></label
+            ><label
+              >📦 Resource types
+              <select id="bm">
+                <option>2</option>
+                <option selected>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select></label
+            >
+          </div>
+          <div class="pad">
+            <div class="row" style="align-items: flex-start; gap: 28px">
+              <div>
+                <b>Allocation</b>
+                <div id="ta"></div>
+              </div>
+              <div>
+                <b>Max</b>
+                <div id="tm"></div>
+              </div>
+              <div>
+                <b>Available</b>
+                <div id="tv"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <button id="run">▶ Run Banker's</button
+            ><button id="ex1" style="--c: var(--yellow)">Safe example</button
+            ><button id="ex2" style="--c: #ff7a70">Unsafe example</button>
+          </div>
+        </div>
+        <div class="grid" style="margin-top: 22px">
+          <div class="card">
+            <h3 style="margin-top: 0">Players</h3>
+            <div class="pl" id="pl"></div>
+            <b>Work (free resources):</b> <span class="tg" id="wk">–</span>
+            <p><b>Safe sequence:</b></p>
+            <div class="seq" id="sq"></div>
+          </div>
+          <div class="card">
+            <h3 style="margin-top: 0">Server log</h3>
+            <div class="log" id="lg"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
